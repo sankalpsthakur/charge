@@ -42,7 +42,7 @@ st.write(f'Profit: ₹{Profit/10000000:.2f} crores INR.')
 # Additional Insights in Main Area
 st.subheader('4. Additional Insights:')
 
-break_even_utilization = Total_Expenses / (Slots_per_day * Average_revenue * Operational_days)
+break_even_utilization = Total_Expenses * 10000000 / (Slots_per_day * Average_revenue * Operational_days)
 st.write(f'The breakeven utilization rate (for profitability) is approximately {break_even_utilization*100:.2f}%.')
 
 if Profit < 0:
