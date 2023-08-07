@@ -3,42 +3,42 @@ import streamlit as st
 # Streamlit Page Configuration
 st.title('Cashflow Analysis for Electric Charging Stations (2023)')
 
-# Assumptions Section
-st.subheader('1. Key Assumptions:')
+# Assumptions Section in Sidebar
+st.sidebar.subheader('1. Key Assumptions:')
 
-CAPEX = st.number_input('Capital Expenditure (CAPEX) per station (₹ Crores)', value=2.5)
-Lifespan = st.slider('Lifespan of one charging station (years)', 1, 20, 10)
-Operational_days = st.slider('Operational days/year', 50, 365, 300)
-Charging_capacity = st.slider('Charging capacity per station (cars simultaneously)', 50, 200, 125)
-Utilization_rate = st.slider('Utilization rate (%)', 1, 100, 20) / 100
-Discount_rate = st.slider('Discount rate (%)', 1, 20, 10) / 100
-Average_revenue = st.number_input('Average revenue per 30-minute slot (₹ INR)', value=125)
+CAPEX = st.sidebar.number_input('Capital Expenditure (CAPEX) per station (₹ Crores)', value=2.5)
+Lifespan = st.sidebar.slider('Lifespan of one charging station (years)', 1, 20, 10)
+Operational_days = st.sidebar.slider('Operational days/year', 50, 365, 300)
+Charging_capacity = st.sidebar.slider('Charging capacity per station (cars simultaneously)', 50, 200, 125)
+Utilization_rate = st.sidebar.slider('Utilization rate (%)', 1, 100, 20) / 100
+Discount_rate = st.sidebar.slider('Discount rate (%)', 1, 20, 10) / 100
+Average_revenue = st.sidebar.number_input('Average revenue per 30-minute slot (₹ INR)', value=125)
 
-# Revenue Calculation
+# Revenue Calculation in Main Area
 st.subheader('2. Revenue Calculation (Per Station for 2023):')
 
 Slots_per_day = Charging_capacity
 Revenue = Slots_per_day * Utilization_rate * Average_revenue * Operational_days
 st.write(f'Revenue: ₹{Revenue/10000000:.2f} crores INR.')
 
-# Expense Calculation
+# Expense Calculation in Main Area
 st.subheader('3. Expense Calculation (Per Station for 2023):')
 
-OPEX = st.number_input('OPEX (₹ crores annually)', value=0.25)
+OPEX = st.sidebar.number_input('OPEX (₹ crores annually)', value=0.25)
 Depreciation = CAPEX / Lifespan
-Electricity_Cost = st.number_input('Electricity Cost (based on utilization) (₹ crores annually)', value=4.05)
-Salary_Expense = st.number_input('Salary Expense (for 2023) (₹ crores annually)', value=6)
+Electricity_Cost = st.sidebar.number_input('Electricity Cost (based on utilization) (₹ crores annually)', value=4.05)
+Salary_Expense = st.sidebar.number_input('Salary Expense (for 2023) (₹ crores annually)', value=6)
 
 Total_Expenses = OPEX + Depreciation + Electricity_Cost + Salary_Expense
 st.write(f'Total Expenses: ₹{Total_Expenses/10000000:.2f} crores INR annually.')
 
-# Profit Calculation
+# Profit Calculation in Main Area
 st.subheader('4. Profit Calculation (Per Station for 2023):')
 
 Profit = Revenue - Total_Expenses * 10000000  # Multiply by 10^7 to convert crores to actual value
 st.write(f'Profit: ₹{Profit/10000000:.2f} crores INR.')
 
-# Additional Insights
+# Additional Insights in Main Area
 st.subheader('5. Additional Insights:')
 
 break_even_utilization = Total_Expenses / (Slots_per_day * Average_revenue * Operational_days)
