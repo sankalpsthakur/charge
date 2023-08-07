@@ -18,7 +18,7 @@ Electricity_cost_per_charge = st.sidebar.number_input('Electricity cost per car 
 # Revenue Calculation in Main Area
 st.subheader('1. Revenue Calculation (Per Station for 2023):')
 
-Slots_per_day = Charging_capacity
+Slots_per_day = Charging_capacity * 48
 Revenue = Slots_per_day * Utilization_rate * Average_revenue * Operational_days
 st.write(f'Revenue: ₹{Revenue/10000000:.2f} crores INR.')
 
